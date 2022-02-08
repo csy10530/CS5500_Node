@@ -2,6 +2,12 @@ import Tuit from "../models/Tuit";
 import TuitModel from "../mongoose/TuitModel";
 import TuitDaoI from "../interfaces/TuitDao";
 
+
+/**
+ * Implements the DAO of Tuit.
+ * @implements {TuitDaoI} TuitDao interface
+ * @property {TuitDao} tuitDao single instance of TuitDao
+ */
 export default class TuitDao implements TuitDaoI {
     private static tuitDao: TuitDao | null = null;
     public static getInstance = (): TuitDao => {
