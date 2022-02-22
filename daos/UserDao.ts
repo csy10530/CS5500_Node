@@ -1,11 +1,11 @@
-import User from "../models/User";
-import UserModel from "../mongoose/UserModel";
-import UserDaoI from "../interfaces/UserDao";
+import User from "../models/users/User";
+import UserModel from "../mongoose/users/UserModel";
+import UserDaoI from "../interfaces/UserDaoI";
 
 /**
  * Implements the DAO of users
- * @implements {UserDaoI} UserDao interface
- * @property {UserDao} userDao single instance of UserDao
+ * @implements {UserDaoI} UserDaoI interface
+ * @property {UserDao} userDao single instance of UserDaoI
  */
 export default class UserDao implements UserDaoI {
     private static userDao: UserDao | null = null;
