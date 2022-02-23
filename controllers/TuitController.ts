@@ -21,6 +21,11 @@ export default class TuitController implements TuitControllerI {
 
     private constructor() {}
 
+    /**
+     *
+     * @param req
+     * @param res
+     */
     deleteTuit = (req: Request, res: Response) =>
         TuitController.tuitDao.deleteTuit(req.params.tid)
             .then(status => res.json(status));

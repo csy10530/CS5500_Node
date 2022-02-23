@@ -13,7 +13,7 @@ export default class BookmarkController implements BookmarkControllerI {
             app.post('/users/:uid/bookmarks/:tid', BookmarkController.bookmarkController.userBookmarksTuit);
             app.delete('/users/:uid/bookmarks/:tid', BookmarkController.bookmarkController.userUnbookmarksTuit);
             app.get('/users/:uid/bookmarks', BookmarkController.bookmarkController.findBookmarkedTuits);
-            app.get('/bookmarks', BookmarkController.bookmarkController.findAllBookmarks);
+            app.delete('/user/:uid/bookmarks', BookmarkController.bookmarkController.userUnbookmarksAllTuits);
             app.get('/tuits/:tid/bookmarks', BookmarkController.bookmarkController.findUsersThatBookmarkedTuit);
         }
         return BookmarkController.bookmarkController;
@@ -34,10 +34,9 @@ export default class BookmarkController implements BookmarkControllerI {
         BookmarkController.bookmarkDao.findBookmarkedTuits(req.params.uid)
             .then(bookmarks => res.json(bookmarks));
 
-    findAllBookmarks = (req: Request, res: Response) => {
-        BookmarkController.bookmarkDao.findAllBookmarks()
-            .then(bookmarks => res.json(bookmarks));
-    }
+    userUnbookmarksAllTuits = (req: Request, res: Response) =>
+        BookmarkController.bookmarkDao.userUnbookmarksAllTuits(req.params.uid)
+            .then(status => res.json(status));
 
     findUsersThatBookmarkedTuit = (req: Request, res: Response) => {
         BookmarkController.bookmarkDao.findUsersThatBookmarkedTuit(req.params.tid)

@@ -12,13 +12,14 @@ export default class FollowController implements FollowControllerI {
             app.delete('/users/:uid1/follows/:uid2', FollowController.followController.userUnfollowsAnotherUser);
             app.get('/users/:uid/follows', FollowController.followController.findFollowingUsers);
             app.get('/users/:uid/follows/users', FollowController.followController.findFollowers);
-            app.get('/users/:uid/follows', FollowController.followController.findUsersFollowedByAnotherUser);
-            app.get('/users/:uid/follows/users', FollowController.followController.findFollowersOfAnohterUser);
+            app.delete('/users/:uid/follows', FollowController.followController.userUnfollowsAllUsers);
+            app.delete('/users/:uid/follows/users', FollowController.followController.userDeletesAllFollowers);
         }
         return FollowController.followController;
     }
 
-    private constructor() {}
+    private constructor() {
+    }
 
     userFollowsAnotherUser = (req: Request, res: Response) =>
         FollowController.followDao.userFollowsAnotherUser(req.params.uid1, req.params.uid2)
@@ -36,11 +37,11 @@ export default class FollowController implements FollowControllerI {
         FollowController.followDao.findFollowers(req.params.uid)
             .then(follows => res.json(follows));
 
-    findFollowersOfAnohterUser = (req: Request, res: Response) =>
-        FollowController.followDao.findFollowersOfAnohterUser(req.params.uid)
-            .then(follows => res.json(follows));
+    userUnfollowsAllUsers = (req: Request, res: Response) =>
+        FollowController.followDao.userUnfollowsAllUsers(req.params.uid)
+            .then(status => res.json(status));
 
-    findUsersFollowedByAnotherUser = (req: Request, res: Response) =>
-        FollowController.followDao.findUsersFollowedByAnotherUser(req.params.uid)
-            .then(follows => res.json(follows));
+    userDeletesAllFollowers = (req: Request, res: Response) =>
+        FollowController.followDao.userDeletesAllFollowers(req.params.uid)
+            .then(status => res.json(status));
 }
