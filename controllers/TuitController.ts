@@ -1,3 +1,6 @@
+/**
+ * @file RESTful API for Tuit controller
+ */
 import {Request, Response, Express} from "express";
 import TuitDao from "../daos/TuitDao";
 import TuitControllerI from "../interfaces/TuitControllerI";

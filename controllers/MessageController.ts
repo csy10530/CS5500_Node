@@ -1,5 +1,7 @@
+/**
+ * @file RESTful API for Message controller
+ */
 import {Express, Request, Response} from "express";
-import Message from "../models/messages/Message";
 import MessageControllerI from "../interfaces/MessageControllerI";
 import MessageDao from "../daos/MessageDao";
 

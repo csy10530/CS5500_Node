@@ -1,9 +1,21 @@
-import Bookmark from "../models/bookmarks/Bookmark";
+/**
+ * @file RESTful API for Bookmark controller
+ */
 import {Express, Request, Response} from "express";
 import BookmarkControllerI from "../interfaces/BookmarkControllerI";
 import BookmarkDao from "../daos/BookmarkDao";
 
-
+/**
+ * @class BookmarkController Implements RESTful API for Bookmark Controller
+ * Defines the following HTTP endpoints:
+ * <ul>
+ *     <li>GET /users/:uid/bookmarks to retrieve user's bookmarked tuits</li>
+ *     <li>GET /tuits/:tid/bookmarks to retrieve users who bookmarked the tuit</li>
+ *     <li>POST /users/:uid/bookmarks/:tid to bookmark a tuit</li>
+ *     <li>DELETE /users/:uid/bookmarks/:tid to unbookmark a tuit</li>
+ *     <li>DELETE /users/:uid/bookmarks to unbookmark all tuits</li>
+ * </ul>
+ */
 export default class BookmarkController implements BookmarkControllerI {
     private static bookmarkDao: BookmarkDao = BookmarkDao.getInstance();
     private static bookmarkController: BookmarkController | null = null;
@@ -13,7 +25,7 @@ export default class BookmarkController implements BookmarkControllerI {
             app.post('/users/:uid/bookmarks/:tid', BookmarkController.bookmarkController.userBookmarksTuit);
             app.delete('/users/:uid/bookmarks/:tid', BookmarkController.bookmarkController.userUnbookmarksTuit);
             app.get('/users/:uid/bookmarks', BookmarkController.bookmarkController.findBookmarkedTuits);
-            app.delete('/user/:uid/bookmarks', BookmarkController.bookmarkController.userUnbookmarksAllTuits);
+            app.delete('/users/:uid/bookmarks', BookmarkController.bookmarkController.userUnbookmarksAllTuits);
             app.get('/tuits/:tid/bookmarks', BookmarkController.bookmarkController.findUsersThatBookmarkedTuit);
         }
         return BookmarkController.bookmarkController;

@@ -1,3 +1,6 @@
+/**
+ * @file RESTful API for User controller
+ */
 import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/UserControllerI";

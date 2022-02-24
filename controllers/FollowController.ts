@@ -1,3 +1,6 @@
+/**
+ * @file RESTful API for Follow controller
+ */
 import FollowControllerI from "../interfaces/FollowControllerI";
 import FollowDao from "../daos/FollowDao";
 import {Express, Request, Response} from "express";

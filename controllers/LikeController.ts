@@ -1,3 +1,6 @@
+/**
+ * @file RESTful API for Like controller
+ */
 import LikeControllerI from "../interfaces/LikeControllerI";
 import LikeDao from "../daos/LikeDao";
 import {Express, Request, Response} from "express";
