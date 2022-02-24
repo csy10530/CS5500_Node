@@ -1,3 +1,6 @@
+/**
+ * @file Declares the interface of Like's data access object methods
+ */
 import Like from "../models/likes/Like";
 
 export default interface LikeDaoI {

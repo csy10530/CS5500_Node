@@ -33,7 +33,7 @@ export default class FollowDao implements FollowDaoI {
         return await FollowModel.deleteMany({followedBy: uid});
     }
 
-    async userDeletesAllFollowers(uid: string): Promise<any> {
-        return await FollowModel.deleteMany({following: uid});
+    async userUpdatesFollowingUser(fid: string, follow: Follow): Promise<any> {
+        return await FollowModel.updateOne({_id: fid}, {$set: follow});
     }
 }

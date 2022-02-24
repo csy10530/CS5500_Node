@@ -1,3 +1,6 @@
+/**
+ * @file Declares the interface of Bookmark's data access object methods
+ */
 import Bookmark from "../models/bookmarks/Bookmark";
 
 export default interface BookmarkDaoI {

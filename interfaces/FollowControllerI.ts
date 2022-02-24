@@ -1,3 +1,6 @@
+/**
+ * @file Declares the interface for the Follow controller
+ */
 import {Request, Response} from "express";
 
 export default interface FollowControllerI {
@@ -6,5 +9,5 @@ export default interface FollowControllerI {
     findFollowingUsers(req: Request, res: Response): void;
     findFollowers(req: Request, res: Response): void;
     userUnfollowsAllUsers(req: Request, res: Response): void;
-    userDeletesAllFollowers(req: Request, res: Response): void;
+    userUpdatesFollowingUser(req: Request, res: Response): void;
 }

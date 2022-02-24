@@ -1,3 +1,6 @@
+/**
+ * @file Declares the interface of User's data access object methods
+ */
 import User from "../models/users/User";
 
 export default interface UserDaoI {
