@@ -18,11 +18,11 @@ export default class MessageDao implements MessageDaoI {
     }
 
     async findSentMessages(uid: string): Promise<Message[]> {
-        return await MessageModel.find({sentBy: uid}).populate("message").exec();
+        return await MessageModel.find({sentBy: uid}).populate("sentTo").exec();
     }
 
     async findReceivedMessages(uid: string): Promise<Message[]> {
-        return await MessageModel.find({sentTo: uid}).populate("message").exec();
+        return await MessageModel.find({sentTo: uid}).populate("sentBy").exec();
     }
 
     async deleteOneMessage(mid: string): Promise<any> {
