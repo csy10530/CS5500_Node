@@ -4,6 +4,7 @@
 import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/UserControllerI";
+import User from "../models/users/User";
 
 /**
  * @class UserController Implements RESTful API for User Controller
@@ -34,6 +35,10 @@ export default class UserController implements UserControllerI {
             app.post('/users', UserController.userController.createUser);
             app.delete('/users/:uid', UserController.userController.deleteUser);
             app.put('/users/:uid', UserController.userController.updateUser);
+
+            app.post('/register', UserController.userController.register);
+            app.post('/login', UserController.userController.login);
+            app.get('/users/username/:username/delete', UserController.userController.deleteUserByUsername);
         }
         return UserController.userController;
     }
@@ -83,5 +88,17 @@ export default class UserController implements UserControllerI {
      */
     updateUser = (req: Request, res: Response) =>
         UserController.userDao.updateUser(req.params.uid, req.body)
+            .then(status => res.json(status));
+
+    register = (req: Request, res: Response) =>
+        UserController.userDao.findUserByUsername(req.body.username)
+            .then(user => res.json(user));
+
+    login = (req: Request, res: Response) =>
+        UserController.userDao.findUserByCredentials(req.body.username, req.body.password)
+            .then(user => res.json(user));
+
+    deleteUserByUsername = (req: Request, res: Response) =>
+        UserController.userDao.deleteUserByUsername(req.params.username)
             .then(status => res.json(status));
 }
