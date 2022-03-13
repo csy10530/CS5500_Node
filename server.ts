@@ -21,8 +21,11 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 
+const cors = require('cors');
+
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.connect('mongodb+srv://SiyuanChen:CS5500Sp22@cs5500.t59xq.mongodb.net/tuiter?retryWrites=true&w=majority');
 
