@@ -14,11 +14,11 @@ import express, {Request, Response} from 'express';
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 import LikeController from "./controllers/LikeController";
-//import SessionController from "./controllers/SessionController";
-//import AuthenticationController from "./controllers/AuthenticationController";
+import AuthenticationController from "./controllers/AuthenticationController";
 import mongoose from "mongoose";
-//import GroupController from "./controllers/GroupController";
 import bodyParser from "body-parser";
+import GroupController from "./controllers/GroupController";
+import SessionController from "./controllers/SessionController";
 const cors = require("cors");
 const session = require("express-session");
 
@@ -45,7 +45,7 @@ let sess = {
     resave: true,
     cookie: {
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.ENV
+        secure: process.env.NODE_ENV === "production"
     }
 }
 
@@ -63,9 +63,9 @@ app.get('/', (req: Request, res: Response) =>
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
-//SessionController(app);
-//AuthenticationController(app);
-//GroupController(app);
+SessionController(app);
+AuthenticationController(app);
+GroupController(app);
 /**
  * Start a server listening at port 4000 locally
  * but use environment variable PORT on Heroku if available.

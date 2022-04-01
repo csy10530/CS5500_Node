@@ -68,9 +68,19 @@ export default class TuitController implements TuitControllerI {
      * @param req represents a request from the client
      * @param res represents a response to the client
      */
-    createTuitByUser = (req: Request, res: Response) =>
+    createTuitByUser = (req: Request, res: Response) => {
+        let userId = req.params.uid === "me"
+        //@ts-ignore
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
+
+        if (userId === "me") {
+            res.sendStatus(503);
+            return;
+        }
+
         TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
             .then(tuit => res.json(tuit));
+    }
 
     /**
      * Retrieves all tuits from the database
@@ -95,9 +105,19 @@ export default class TuitController implements TuitControllerI {
      * @param req represents a request from the client
      * @param res represents a response to the client
      */
-    findTuitsByUser = (req: Request, res: Response) =>
+    findTuitsByUser = (req: Request, res: Response) => {
+        let userId = req.params.uid === "me"
+            //@ts-ignore
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
+
+        if (userId === "me") {
+            res.sendStatus(503);
+            return;
+        }
+
         TuitController.tuitDao.findTuitsByUser(req.params.uid)
             .then(tuits => res.json(tuits));
+    }
 
     /**
      * Updates a specific tuit document in the database

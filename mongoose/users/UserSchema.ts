@@ -2,7 +2,7 @@
  * @file Implements the data schema of User
  */
 import mongoose from "mongoose";
-import User from "../../models/users/User";
+
 
 /**
  * @typedef User represents the data schema of users
@@ -20,7 +20,7 @@ import User from "../../models/users/User";
  * @property {Date} joined represents the date when the user joined Tuiter
  * @property {Location} location represents the user's location
  */
-const UserSchema = new mongoose.Schema<User>({
+const UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
     firstName: String,

@@ -21,18 +21,19 @@ import Location from "./Location";
  * @property {Date} joined represents the date when the user joined Tuiter
  * @property {Location} location represents the user's location
  */
-export default class User {
-    private username: string = '';
-    private password: string = '';
-    private firstname: string | null = null;
-    private lastname: string | null = null;
-    private email: string = '';
-    private profilePhoto: string | null = null;
-    private headerImage: string | null = null;
-    private accountType: AccountType = AccountType.Personal;
-    private maritalStatus: MaritalStatus = MaritalStatus.Single;
-    private biography: string | null = null;
-    private dateOfBirth: string | null = null;
-    private joined: Date = new Date();
-    private location: Location | null = null;
+
+export default interface User {
+    username: string,
+    password: string,
+    firstname?: string,
+    lastname?: string,
+    email: string,
+    profilePhoto?: string,
+    headerImage?: string,
+    accountType?: AccountType,
+    maritalStatus?: MaritalStatus,
+    biography?: string,
+    dateOfBirth?: string,
+    joined?: Date,
+    location?: Location,
 }

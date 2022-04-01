@@ -2,6 +2,7 @@
  * @file Declares Tuit object data model
  */
 import User from "../users/User";
+import Stats from "./Stats";
 
 /**
  * @typedef Tuit represents a tuit
@@ -9,8 +10,13 @@ import User from "../users/User";
  * @property {Date} postedOn represents the time when the tuit is posted
  * @property {User} postedBy represents the user who posted the tuit
  */
-export default class Tuit {
-    private tuit: string = '';
-    private postedOn: Date = new Date();
-    private postedBy: User | null = null;
+export default interface Tuit {
+    tuit: string,
+    postedOn?: Date,
+    postedBy: User,
+    image?: String,
+    youtube?: String,
+    avatarLogo?: String,
+    imageOverlay?: String,
+    stats: Stats
 }
