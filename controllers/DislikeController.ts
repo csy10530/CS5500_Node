@@ -33,7 +33,7 @@ export default class DislikeController implements DislikeControllerI {
     findAllTuitsDislikedByUser = async (req: Request, res: Response) => {
         let userId = req.params.uid === "me"
         //@ts-ignore
-        && req.sesssion["profile"] ? req.session["profile"]._id : req.params.uid;
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
 
         if (userId === "me") {
             res.sendStatus(503);
@@ -57,7 +57,7 @@ export default class DislikeController implements DislikeControllerI {
     userDislikesTuit = async (req: Request, res: Response) => {
         let userId = req.params.uid === "me"
         //@ts-ignore
-        && req.sesssion["profile"] ? req.session["profile"]._id : req.params.uid;
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
 
         let tid = req.params.tid;
 
@@ -96,7 +96,7 @@ export default class DislikeController implements DislikeControllerI {
     findUserDislikesTuit = async (req: Request, res: Response) => {
         let userId = req.params.uid === "me"
         //@ts-ignore
-        && req.sesssion["profile"] ? req.session["profile"]._id : req.params.uid;
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
 
         if (userId === "me") {
             res.sendStatus(503);

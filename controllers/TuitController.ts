@@ -78,7 +78,7 @@ export default class TuitController implements TuitControllerI {
             return;
         }
 
-        TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
+        TuitController.tuitDao.createTuitByUser(userId, req.body)
             .then(tuit => res.json(tuit));
     }
 
@@ -115,7 +115,7 @@ export default class TuitController implements TuitControllerI {
             return;
         }
 
-        TuitController.tuitDao.findTuitsByUser(req.params.uid)
+        TuitController.tuitDao.findTuitsByUser(userId)
             .then(tuits => res.json(tuits));
     }
 

@@ -79,7 +79,7 @@ export default class LikeController implements LikeControllerI {
     userLikesTuit = async (req: Request, res: Response) => {
         let userId = req.params.uid === "me"
         //@ts-ignore
-        && req.sesssion["profile"] ? req.session["profile"]._id : req.params.uid;
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
 
         let tid = req.params.tid;
 
@@ -113,14 +113,14 @@ export default class LikeController implements LikeControllerI {
                 res.sendStatus(200);
             }
         }
-        LikeController.likeDao.userLikesTuit(req.params.tid, req.params.uid)
+        LikeController.likeDao.userLikesTuit(req.params.tid, userId)
             .then(like => res.json(like));
     }
 
     findUserLikesTuit = async (req: Request, res: Response) => {
         let userId = req.params.uid === "me"
         //@ts-ignore
-        && req.sesssion["profile"] ? req.session["profile"]._id : req.params.uid;
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
 
         let tid = req.params.tid;
 
