@@ -36,7 +36,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors({
     credentials: true,
-    origin: process.env.CORS_ORIGIN
+    origin: ["http://localhost:3000", process.env.CORS_ORIGIN]
 }));
 
 let sess = {
@@ -45,7 +45,7 @@ let sess = {
     resave: true,
     cookie: {
         sameSite: process.env.NODE_ENV === "PRODUCTION" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV
+        secure: process.env.NODE_ENV === "PRODUCTION"
     }
 }
 
