@@ -150,20 +150,4 @@ export default class LikeController implements LikeControllerI {
         const stat = tuit ? {"like": true} : {"like": false};
         res.json(stat);
     }
-
-    /*userTogglesTuitLikes = (req: Request, res: Response) => {
-        const uid = req.params.uid;
-        const tid = req.params.tid;
-        const likeDao = LikeController.likeDao;
-        const tuitDao = LikeController.tuitDao;
-        // @ts-ignore
-        const profile = req.session["profile"];
-        const userId = uid === "me" && profile ? profile._id : uid;
-
-        try {
-            const userAlreadyLikedTuit = await likeDao.findUserLikesTuit(userId, tid);
-            const howManyLikedTuit = await likeDao.countHowManyLikedTuit(tid);
-            let tuit = await tuitDao.findTuitById(tid);
-        }
-    }*/
 }
