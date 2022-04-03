@@ -20,6 +20,9 @@ import bodyParser from "body-parser";
 import GroupController from "./controllers/GroupController";
 import SessionController from "./controllers/SessionController";
 import DislikeController from "./controllers/DislikeController";
+import MessageController from "./controllers/MessageController";
+import BookmarkController from "./controllers/BookmarkController";
+import FollowController from "./controllers/FollowController";
 const cors = require("cors");
 const session = require("express-session");
 
@@ -65,6 +68,10 @@ const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
 const dislikeController = DislikeController.getInsatnce(app);
+const messageController = MessageController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
+const followController = FollowController.getInstance(app);
+
 SessionController(app);
 AuthenticationController(app);
 GroupController(app);

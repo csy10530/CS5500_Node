@@ -111,7 +111,7 @@ export default class DislikeController implements DislikeControllerI {
         }
 
         let tuit = await DislikeController.dislikeDao.findUserDislikesTuit(userId, req.params.tid);
-        const stat = tuit ? {"like": true} : {"like": false};
+        const stat = tuit ? {"dislike": true} : {"dislike": false};
         res.json(stat);
     }
 }
