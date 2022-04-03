@@ -123,7 +123,7 @@ export default class LikeController implements LikeControllerI {
             if (tuitIsDisliked) {
                 const dislikeCount = await LikeController.dislikeDao.countDislikesForTuit(tid);
                 tuit.stats.dislikes = dislikeCount - 1;
-                LikeController.dislikeDao.userUndislikesTuit(userId, tid)
+                LikeController.dislikeDao.userUndislikesTuit(tid, userId)
                     .then(status => LikeController.tuitDao.updateLikes(tid, tuit.stats))
                     .then(status => res.sendStatus(200));
             } else {
