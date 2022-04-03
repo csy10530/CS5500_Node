@@ -76,7 +76,7 @@ export default class DislikeController implements DislikeControllerI {
             console.log("dislikeCount: "+dislikeCount);
             console.log("stats.dislikes: "+tuit.stats.dislikes);
 
-            DislikeController.dislikeDao.userUndislikesTuit(userId, tid)
+            DislikeController.dislikeDao.userUndislikesTuit(tid, userId)
                 .then(status => DislikeController.tuitDao.updateLikes(tid, tuit.stats))
                 .then(status => res.sendStatus(200));
 
@@ -91,7 +91,7 @@ export default class DislikeController implements DislikeControllerI {
             if (tuitIsLiked) {
                 const likeCount = await DislikeController.likeDao.countHowManyLikedTuit(tid);
                 tuit.stats.likes = likeCount - 1;
-                DislikeController.likeDao.userUnlikesTuit(userId, tid)
+                DislikeController.likeDao.userUnlikesTuit(tid, userId)
                     .then(status => DislikeController.tuitDao.updateLikes(tid, tuit.stats))
                     .then(status => res.sendStatus(200));
             } else {
