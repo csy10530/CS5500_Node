@@ -19,6 +19,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import GroupController from "./controllers/GroupController";
 import SessionController from "./controllers/SessionController";
+import DislikeController from "./controllers/DislikeController";
 const cors = require("cors");
 const session = require("express-session");
 
@@ -44,12 +45,12 @@ let sess = {
     saveUninitialized: true,
     resave: true,
     cookie: {
-        sameSite: process.env.NODE_ENV === "PRODUCTION" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "PRODUCTION"
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === "production"
     }
 }
 
-if (process.env.NODE_ENV === 'PRODUCTION') {
+if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1) // trust first proxy
 }
 
@@ -63,6 +64,7 @@ app.get('/', (req: Request, res: Response) =>
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
+const dislikeController = DislikeController.getInsatnce(app);
 SessionController(app);
 AuthenticationController(app);
 GroupController(app);

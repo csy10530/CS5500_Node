@@ -10,6 +10,6 @@ import User from "../users/User";
  * @property {User} likedBy represents a user who likes a tuit
  */
 export default class Like {
-    private tuit: Tuit | null = null;
-    private likedBy: User | null = null;
+    tuit: Tuit | null = null;
+    likedBy: User | null = null;
 }

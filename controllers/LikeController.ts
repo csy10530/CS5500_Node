@@ -58,9 +58,26 @@ export default class LikeController implements LikeControllerI {
      * @param req represents a request from the client
      * @param res represents a response to the client
      */
-    findAllTuitsLikedByUser = (req: Request, res: Response) =>
-        LikeController.likeDao.findAllTuitsLikedByUser(req.params.uid)
-            .then(tuits => res.json(tuits));
+    findAllTuitsLikedByUser = async (req: Request, res: Response) => {
+        let userId = req.params.uid === "me"
+        //@ts-ignore
+        && req.session["profile"] ? req.session["profile"]._id : req.params.uid;
+
+        let tid = req.params.tid;
+
+        if (userId === "me") {
+            res.sendStatus(503);
+            return;
+        }
+
+        try {
+            let likes = await LikeController.likeDao.findAllTuitsLikedByUser(userId);
+            const tuits = likes.map(likes => likes.tuit);
+            res.json(tuits);
+        } catch (e) {
+            res.sendStatus(503);
+        }
+    }
 
     /**
      * Removes a like document from the database
@@ -113,8 +130,8 @@ export default class LikeController implements LikeControllerI {
                 res.sendStatus(200);
             }
         }
-        LikeController.likeDao.userLikesTuit(req.params.tid, userId)
-            .then(like => res.json(like));
+
+
     }
 
     findUserLikesTuit = async (req: Request, res: Response) => {
