@@ -25,8 +25,8 @@ const session = require("express-session");
 
 // build the connection string
 const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = "SiyuanChen"//process.env.DB_USERNAME;
-const DB_PASSWORD = "CS5500Sp22"//process.env.DB_PASSWORD;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 const HOST = "cs5500.t59xq.mongodb.net";
 const DB_NAME = "tuiter";
 const DB_QUERY = "retryWrites=true&w=majority";
@@ -41,7 +41,7 @@ app.use(cors({
 }));
 
 let sess = {
-    secret: "session",//process.env.EXPRESS_SESSION_SECRET,
+    secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: {
